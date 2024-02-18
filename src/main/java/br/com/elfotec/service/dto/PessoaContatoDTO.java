@@ -38,6 +38,9 @@ public class PessoaContatoDTO implements Serializable {
     @Schema(description = "pode ter o simbolo 'plus', ddi, ddd alem do numero")
     private String telefoneNumeroCompleto;
 
+    @Schema(description = "Caso o contato seja um número de telefone")
+    private Integer telefoneDdi;
+
     /**
      * Caso o contato seja um número de telefone
      */
@@ -118,6 +121,14 @@ public class PessoaContatoDTO implements Serializable {
 
     public void setTelefoneNumeroCompleto(String telefoneNumeroCompleto) {
         this.telefoneNumeroCompleto = telefoneNumeroCompleto;
+    }
+
+    public Integer getTelefoneDdi() {
+        return telefoneDdi;
+    }
+
+    public void setTelefoneDdi(Integer telefoneDdi) {
+        this.telefoneDdi = telefoneDdi;
     }
 
     public Integer getTelefoneDdd() {
@@ -208,6 +219,7 @@ public class PessoaContatoDTO implements Serializable {
             ", descricao='" + getDescricao() + "'" +
             ", contatoDigitalIdent='" + getContatoDigitalIdent() + "'" +
             ", telefoneNumeroCompleto='" + getTelefoneNumeroCompleto() + "'" +
+            ", telefoneDdd=" + getTelefoneDdi() +
             ", telefoneDdd=" + getTelefoneDdd() +
             ", telefoneNumero=" + getTelefoneNumero() +
             ", preferido='" + getPreferido() + "'" +

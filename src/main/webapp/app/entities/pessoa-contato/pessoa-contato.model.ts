@@ -9,6 +9,7 @@ export interface IPessoaContato {
   descricao?: string | null;
   contatoDigitalIdent?: string | null;
   telefoneNumeroCompleto?: string | null;
+  telefoneDdi?: number | null;
   telefoneDdd?: number | null;
   telefoneNumero?: number | null;
   preferido?: boolean;

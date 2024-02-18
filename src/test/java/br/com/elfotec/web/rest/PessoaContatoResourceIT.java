@@ -52,6 +52,9 @@ class PessoaContatoResourceIT {
     private static final String DEFAULT_TELEFONE_NUMERO_COMPLETO = "AAAAAAAAAA";
     private static final String UPDATED_TELEFONE_NUMERO_COMPLETO = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_TELEFONE_DDI = 1;
+    private static final Integer UPDATED_TELEFONE_DDI = 2;
+
     private static final Integer DEFAULT_TELEFONE_DDD = 1;
     private static final Integer UPDATED_TELEFONE_DDD = 2;
 
@@ -104,6 +107,7 @@ class PessoaContatoResourceIT {
             .descricao(DEFAULT_DESCRICAO)
             .contatoDigitalIdent(DEFAULT_CONTATO_DIGITAL_IDENT)
             .telefoneNumeroCompleto(DEFAULT_TELEFONE_NUMERO_COMPLETO)
+            .telefoneDdi(DEFAULT_TELEFONE_DDI)
             .telefoneDdd(DEFAULT_TELEFONE_DDD)
             .telefoneNumero(DEFAULT_TELEFONE_NUMERO)
             .preferido(DEFAULT_PREFERIDO)
@@ -127,6 +131,7 @@ class PessoaContatoResourceIT {
             .descricao(UPDATED_DESCRICAO)
             .contatoDigitalIdent(UPDATED_CONTATO_DIGITAL_IDENT)
             .telefoneNumeroCompleto(UPDATED_TELEFONE_NUMERO_COMPLETO)
+            .telefoneDdi(UPDATED_TELEFONE_DDI)
             .telefoneDdd(UPDATED_TELEFONE_DDD)
             .telefoneNumero(UPDATED_TELEFONE_NUMERO)
             .preferido(UPDATED_PREFERIDO)
