@@ -37,7 +37,7 @@ public class Pessoa implements Serializable {
     private Instant dataRegistro;
 
     // add data de exclusao
-    @NotNull
+
     @Column(name = "data_exclusao", nullable = false)
     private Instant dataExclusao;
 
