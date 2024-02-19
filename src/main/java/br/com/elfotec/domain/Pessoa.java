@@ -36,6 +36,11 @@ public class Pessoa implements Serializable {
     @Column(name = "data_registro", nullable = false)
     private Instant dataRegistro;
 
+    // add data de exclusao
+    @NotNull
+    @Column(name = "data_exclusao", nullable = false)
+    private Instant dataExclusao;
+
     @NotNull
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -126,6 +131,19 @@ public class Pessoa implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Instant getDataExclusao() {
+        return this.dataExclusao;
+    }
+
+    public Pessoa dataExclusao(Instant dataExclusao) {
+        this.setDataExclusao(dataExclusao);
+        return this;
+    }
+
+    public void setDataExclusao(Instant dataExclusao) {
+        this.dataExclusao = dataExclusao;
     }
 
     public Instant getDataRegistro() {
@@ -400,6 +418,7 @@ public class Pessoa implements Serializable {
         return "Pessoa{" +
             "id=" + getId() +
             ", dataRegistro='" + getDataRegistro() + "'" +
+            ", dataExclusao='" + getDataExclusao() + "'" +
             ", nome='" + getNome() + "'" +
             ", nomeSocial='" + getNomeSocial() + "'" +
             ", possuiNomeSocial='" + getPossuiNomeSocial() + "'" +

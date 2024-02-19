@@ -1,11 +1,13 @@
 package br.com.elfotec.web.rest;
 
+import br.com.elfotec.domain.Pessoa;
 import br.com.elfotec.repository.PessoaRepository;
 import br.com.elfotec.service.PessoaService;
 import br.com.elfotec.service.dto.PessoaDTO;
 import br.com.elfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,7 +21,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
@@ -147,7 +153,8 @@ public class PessoaResource {
     @GetMapping("/pessoas")
     public ResponseEntity<List<PessoaDTO>> getAllPessoas(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Pessoas");
-        Page<PessoaDTO> page = pessoaService.findAll(pageable);
+
+        Page<PessoaDTO> page = pessoaService.findAllNotExcluded(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -171,10 +178,18 @@ public class PessoaResource {
      * @param id the id of the pessoaDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
+
     @DeleteMapping("/pessoas/{id}")
     public ResponseEntity<Void> deletePessoa(@PathVariable Long id) {
-        log.debug("REST request to delete Pessoa : {}", id);
-        pessoaService.delete(id);
+        log.debug("REST request to delete Pessoa: {}", id);
+
+        pessoaService
+            .findOne(id)
+            .ifPresent(pessoaDTO -> {
+                pessoaDTO.setDataExclusao(Instant.now());
+                pessoaService.save(pessoaDTO);
+            });
+
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))

@@ -29,6 +29,8 @@ public class PessoaDTO implements Serializable {
     @Schema(description = "default current_date, replicando do histórico", required = true)
     private Instant dataRegistro;
 
+    private Instant dataExclusao;
+
     @NotNull
     private String nome;
 
@@ -67,9 +69,6 @@ public class PessoaDTO implements Serializable {
 
     private String cnpj;
 
-    /**
-     * RG Caso TipoPessoa::PESSOA_FISICA, e Inscrição Estadual em caso contrário
-     */
     @Schema(description = "RG Caso TipoPessoa::PESSOA_FISICA, e Inscrição Estadual em caso contrário")
     private String rg;
 
@@ -102,6 +101,14 @@ public class PessoaDTO implements Serializable {
 
     public void setDataRegistro(Instant dataRegistro) {
         this.dataRegistro = dataRegistro;
+    }
+
+    public Instant getDataExclusao() {
+        return dataExclusao;
+    }
+
+    public void setDataExclusao(Instant dataExclusao) {
+        this.dataExclusao = dataExclusao;
     }
 
     public String getNome() {
@@ -276,6 +283,7 @@ public class PessoaDTO implements Serializable {
             "id=" + getId() +
             ", dataRegistro='" + getDataRegistro() + "'" +
             ", nome='" + getNome() + "'" +
+            ", dataExclusao='" + getDataExclusao() + "'" +
             ", nomeSocial='" + getNomeSocial() + "'" +
             ", possuiNomeSocial='" + getPossuiNomeSocial() + "'" +
             ", apelidoNomeFantasia='" + getApelidoNomeFantasia() + "'" +

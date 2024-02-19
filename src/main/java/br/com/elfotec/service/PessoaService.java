@@ -39,6 +39,8 @@ public interface PessoaService {
      * @param id the id of the entity.
      * @return the entity.
      */
+
+    Page<PessoaDTO> findAllNotExcluded(Pageable pageable);
     Optional<PessoaDTO> findOne(Long id);
 
     /**
