@@ -38,6 +38,14 @@ export class PessoaComponent implements OnInit {
     this.predicate = 'id';
     this.ascending = true;
   }
+  formataCPF(cpf: string | number): string {
+    const cpfString = String(cpf);
+    if (/^\d+$/.test(cpfString)) {
+      return cpfString.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    } else {
+      return 'CPF inválido';
+    }
+  }
 
   loadAll(): void {
     this.isLoading = true;

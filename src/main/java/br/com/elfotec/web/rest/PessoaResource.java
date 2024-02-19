@@ -93,12 +93,11 @@ public class PessoaResource {
         if (pessoaDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        if (!Objects.equals(id, pessoaDTO.getId())) {
-            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
-        }
 
-        if (!pessoaRepository.existsById(id)) {
-            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        boolean pessoaExists = pessoaRepository.existsById(id);
+
+        if (!pessoaExists) {
+            return createPessoa(pessoaDTO);
         }
 
         PessoaDTO result = pessoaService.save(pessoaDTO);
